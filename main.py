@@ -14,13 +14,9 @@ class Marble(object):
 		return True
 
 	def find_jump_position(self, x, y):
-
-		# print(self.x, self.y, x, y)
-
 		x_diff = x - self.x
 		y_diff = y - self.y
 		jump_position = ( self.x + x_diff/2, self.y + y_diff/2 )
-		# print(jump_position)
 		return jump_position
 
 	def can_move(self, points, x, y):
@@ -53,10 +49,16 @@ class Board(object):
 				else:
 					self.points[y].append(None)
 
-		self.points[3][3] = None
+		self.set_place(3, 3, None)
+
+	def get_place(self, x, y):
+		return self.points[y][x]
+
+	def set_place(self, x, y, value=None):
+		self.points[y][x] = value
 
 	def display(self, x, y):
-		if(self.points[y][x]):
+		if(self.get_place(x, y)):
 			return 'x'
 		elif Marble.can_place(x, y):
 			return 'o'
@@ -70,7 +72,7 @@ class Board(object):
 		return result
 
 	def save(self):
-		return ''.join([''.join([self.display(i, j) for j in range(7)]) for i in range(7)])
+		return ''.join([''.join([self.display(i, j) for i in range(7)]) for j in range(7)])
 
 
 	def load(self, image):
@@ -105,17 +107,44 @@ class Board(object):
 	def make_move(self, move):
 		(x_s, y_s), (x_e, y_e) = move
 
-		marble = self.points[y_s][x_s]
+		marble = self.get_place(x_s, y_s)
 		(x_j, y_j) = marble.find_jump_position(x_e, y_e)
 
-
-		# print((x_s, y_s), (x_j, y_j), (x_e, y_e))
-
-
-		self.points[y_j][x_j] = None
-		self.points[y_e][x_e] = marble
+		self.set_place(x_j, y_j)
 		marble.move((x_e, y_e))
-		self.points[y_s][x_s] = None
+		self.set_place(x_e, y_e, marble)
+		self.set_place(x_s, y_s)
+
+	def is_complete(self):
+		marbles = list(self.itterate_marbles())
+		# if len(marbles) < 31: return True
+		if(len(marbles) > 1): return False
+		marble = marbles[0]
+		return marble.x == 3 and marble.y == 3
+
+
+def solve(board):
+	states = []
+	best = {'amount': 34}
+	def step(state):
+		board.load(state)
+		num_marbles = state.count('x')
+		if num_marbles < best['amount']:
+			best['amount'] = num_marbles
+			print("Best: {}".format(best['amount']))
+			print(board)
+		if board.is_complete(): return True
+		moves = board.find_available_moves()
+		for move in moves:
+			board.load(state)
+			board.make_move(move)
+			_state = board.save()
+			if step(_state):
+				states.append(_state)	
+				return True
+		return False
+	step(board.save())
+	return states[::-1]
 
 
 
@@ -123,20 +152,15 @@ if __name__ == '__main__':
 	
 	board = Board()
 
-	# print(board)
 	image = board.save()
-	# print(image)
 	board.load(image)
+	states = solve(board)
 
-	# print(board)
+	print(states)
 
-	for i in range(10):
-		moves = board.find_available_moves()
-		# print(moves)
+	print(board)
 
-		board.make_move(moves[0])
 
-		print(board)
 
 
 
