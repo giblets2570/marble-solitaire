@@ -1,0 +1,247 @@
+  xxx  
+  xox  
+xxxoxxx
+xxxxxxx
+xxxxxxx
+  xxx  
+  xxx  
+
+  xxx  
+  xox  
+xooxxxx
+xxxxxxx
+xxxxxxx
+  xxx  
+  xxx  
+
+  oxx  
+  oox  
+xoxxxxx
+xxxxxxx
+xxxxxxx
+  xxx  
+  xxx  
+
+  xoo  
+  oox  
+xoxxxxx
+xxxxxxx
+xxxxxxx
+  xxx  
+  xxx  
+
+  xoo  
+  oox  
+xxooxxx
+xxxxxxx
+xxxxxxx
+  xxx  
+  xxx  
+
+  xoo  
+  oox  
+ooxoxxx
+xxxxxxx
+xxxxxxx
+  xxx  
+  xxx  
+
+  xox  
+  ooo  
+ooxooxx
+xxxxxxx
+xxxxxxx
+  xxx  
+  xxx  
+
+  xox  
+  ooo  
+ooxoxoo
+xxxxxxx
+xxxxxxx
+  xxx  
+  xxx  
+
+  xox  
+  xoo  
+ooooxoo
+xxoxxxx
+xxxxxxx
+  xxx  
+  xxx  
+
+  oox  
+  ooo  
+ooxoxoo
+xxoxxxx
+xxxxxxx
+  xxx  
+  xxx  
+
+  oox  
+  ooo  
+ooxoxoo
+ooxxxxx
+xxxxxxx
+  xxx  
+  xxx  
+
+  oox  
+  xoo  
+ooooxoo
+oooxxxx
+xxxxxxx
+  xxx  
+  xxx  
+
+  oox  
+  xox  
+ooooooo
+oooxoxx
+xxxxxxx
+  xxx  
+  xxx  
+
+  ooo  
+  xoo  
+ooooxoo
+oooxoxx
+xxxxxxx
+  xxx  
+  xxx  
+
+  ooo  
+  xoo  
+ooooxoo
+oooxxoo
+xxxxxxx
+  xxx  
+  xxx  
+
+  ooo  
+  xox  
+ooooooo
+oooxooo
+xxxxxxx
+  xxx  
+  xxx  
+
+  ooo  
+  xox  
+ooooooo
+ooxxooo
+xxoxxxx
+  oxx  
+  xxx  
+
+  ooo  
+  xox  
+ooooooo
+ooxxooo
+ooxxxxx
+  oxx  
+  xxx  
+
+  ooo  
+  xox  
+ooxoooo
+oooxooo
+oooxxxx
+  oxx  
+  xxx  
+
+  ooo  
+  oox  
+ooooooo
+ooxxooo
+oooxxxx
+  oxx  
+  xxx  
+
+  ooo  
+  oox  
+ooooooo
+ooooxoo
+oooxxxx
+  oxx  
+  xxx  
+
+  ooo  
+  oox  
+ooooxoo
+ooooooo
+oooxoxx
+  oxx  
+  xxx  
+
+  ooo  
+  ooo  
+ooooooo
+ooooxoo
+oooxoxx
+  oxx  
+  xxx  
+
+  ooo  
+  ooo  
+ooooooo
+ooooxoo
+oooxxoo
+  oxx  
+  xxx  
+
+  ooo  
+  ooo  
+ooooooo
+ooooxoo
+oooooxo
+  oxx  
+  xxx  
+
+  ooo  
+  ooo  
+ooooooo
+ooooxoo
+ooooxxo
+  oxo  
+  xxo  
+
+  ooo  
+  ooo  
+ooooooo
+ooooooo
+oooooxo
+  oxx  
+  xxo  
+
+  ooo  
+  ooo  
+ooooooo
+ooooooo
+oooooxo
+  oxx  
+  oox  
+
+  ooo  
+  ooo  
+ooooooo
+ooooooo
+ooooxxo
+  oxo  
+  ooo  
+
+  ooo  
+  ooo  
+ooooooo
+ooooooo
+oooxooo
+  oxo  
+  ooo  
+
+  ooo  
+  ooo  
+ooooooo
+oooxooo
+ooooooo
+  ooo  
+  ooo  
