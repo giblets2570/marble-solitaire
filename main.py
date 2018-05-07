@@ -6,13 +6,26 @@ class Marble(object):
 	
 	@staticmethod	
 	def can_place(x, y):
-		if x < 2 or x > 4:
-			if y < 2 or y > 4:
+		if x >= 7 or y >= 7: return False
+		if x < 0 or y < 0: return False
+		if (x < 2) or (x > 4):
+			if (y < 2) or (y > 4):
 				return False
 		return True
 
+	def can_move(self, points, x, y):
+		if(not Marble.can_place(x, y)): return False
+		x_diff = x - self.x
+		y_diff = y - self.y
+		if not ( (abs(x_diff) == 2 or abs(y_diff) == 2) and abs(x_diff) + abs(y_diff) == 2 ): return False
+		jump_position = ( self.x + x_diff/2, self.y + y_diff/2 )
+		jump_piece = points[jump_position[0]][jump_position[1]]
+		if (jump_piece is None): return False
+		if (points[x][y] is not None): return False
+		return True
+
 	def __repr__(self):
-		return "{}, {}: {}".format(self.x, self.y, self.can_place())
+		return "{}, {}".format(self.x, self.y)
 
 class Board(object):
 	"""docstring for Board"""
@@ -25,6 +38,8 @@ class Board(object):
 					self.points[i].append(Marble(i,j))
 				else:
 					self.points[i].append(None)
+
+		self.points[3][3] = None
 
 	def display(self, x, y):
 		if(self.points[x][y]):
@@ -56,6 +71,24 @@ class Board(object):
 				self.points[-1].append(None)
 
 
+	def itterate_marbles(self):
+		for row in self.points:
+			for point in row:
+				if (point is not None):
+					yield point
+
+	def find_available_moves(self):
+		moves = []
+		directions = [(0,2),(2,0),(0,-2),(-2,0)]
+		for marble in self.itterate_marbles():
+			possible_moves = [(marble.x + x, marble.y + y) for (x, y) in directions]
+			for (x, y) in possible_moves:
+				if marble.can_move(self.points, x, y):
+					moves.append(((marble.x, marble.y), (x, y)))
+		return moves
+
+
+
 
 if __name__ == '__main__':
 	
@@ -67,3 +100,20 @@ if __name__ == '__main__':
 	board.load(image)
 
 	print(board)
+
+	moves = board.find_available_moves()
+	print(moves)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
