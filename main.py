@@ -13,16 +13,30 @@ class Marble(object):
 				return False
 		return True
 
+	def find_jump_position(self, x, y):
+
+		# print(self.x, self.y, x, y)
+
+		x_diff = x - self.x
+		y_diff = y - self.y
+		jump_position = ( self.x + x_diff/2, self.y + y_diff/2 )
+		# print(jump_position)
+		return jump_position
+
 	def can_move(self, points, x, y):
 		if(not Marble.can_place(x, y)): return False
 		x_diff = x - self.x
 		y_diff = y - self.y
 		if not ( (abs(x_diff) == 2 or abs(y_diff) == 2) and abs(x_diff) + abs(y_diff) == 2 ): return False
-		jump_position = ( self.x + x_diff/2, self.y + y_diff/2 )
-		jump_piece = points[jump_position[0]][jump_position[1]]
+
+		jump_position = self.find_jump_position(x, y)
+		jump_piece = points[jump_position[1]][jump_position[0]]
 		if (jump_piece is None): return False
-		if (points[x][y] is not None): return False
+		if (points[y][x] is not None): return False
 		return True
+
+	def move(self, move):
+		self.x, self.y = move
 
 	def __repr__(self):
 		return "{}, {}".format(self.x, self.y)
@@ -31,18 +45,18 @@ class Board(object):
 	"""docstring for Board"""
 	def __init__(self):
 		self.points = []
-		for i in range(7):
+		for y in range(7):
 			self.points.append([])
-			for j in range(7):
-				if Marble.can_place(i, j):
-					self.points[i].append(Marble(i,j))
+			for x in range(7):
+				if Marble.can_place(x, y):
+					self.points[y].append(Marble(x,y))
 				else:
-					self.points[i].append(None)
+					self.points[y].append(None)
 
 		self.points[3][3] = None
 
 	def display(self, x, y):
-		if(self.points[x][y]):
+		if(self.points[y][x]):
 			return 'x'
 		elif Marble.can_place(x, y):
 			return 'o'
@@ -88,22 +102,41 @@ class Board(object):
 		return moves
 
 
+	def make_move(self, move):
+		(x_s, y_s), (x_e, y_e) = move
+
+		marble = self.points[y_s][x_s]
+		(x_j, y_j) = marble.find_jump_position(x_e, y_e)
+
+
+		# print((x_s, y_s), (x_j, y_j), (x_e, y_e))
+
+
+		self.points[y_j][x_j] = None
+		self.points[y_e][x_e] = marble
+		marble.move((x_e, y_e))
+		self.points[y_s][x_s] = None
+
 
 
 if __name__ == '__main__':
 	
 	board = Board()
 
-	print(board)
+	# print(board)
 	image = board.save()
-	print(image)
+	# print(image)
 	board.load(image)
 
-	print(board)
+	# print(board)
 
-	moves = board.find_available_moves()
-	print(moves)
+	for i in range(10):
+		moves = board.find_available_moves()
+		# print(moves)
 
+		board.make_move(moves[0])
+
+		print(board)
 
 
 
